@@ -1,0 +1,18 @@
+%syntax-version=1.0.0
+%project=flipr
+%uri=https://github.com/AtomicMathO/discovering-sqitch
+
+appschema 2022-04-02T09:12:27Z Mathieu <mathieu@example.com> # Add schema for all flipr objects.
+users [appschema] 2022-04-02T09:27:21Z Mathieu <mathieu@example.com> # Creates table to track our users.
+insert_user [users appschema] 2022-04-02T09:36:06Z Mathieu <mathieu@example.com> # Creates a function to insert a user.
+change_pass [users appschema] 2022-04-02T09:36:15Z Mathieu <mathieu@example.com> # Creates a function to change a user password.
+@v1.0.0-dev1 2022-04-02T09:44:13Z Mathieu <mathieu@example.com> # Tag v1.0.0-dev1.
+
+flips [appschema users] 2022-04-02T09:54:13Z Mathieu <mathieu@example.com> # Adds table for storing flips.
+insert_flip [flips users appschema] 2022-04-02T09:59:03Z Mathieu <mathieu@example.com> # Creates a function to insert a flip.
+delete_flip [flips users appschema] 2022-04-02T09:59:23Z Mathieu <mathieu@example.com> # Creates a function to delete a flip.
+@v1.0.0-dev2 2022-04-02T10:05:56Z Mathieu <mathieu@example.com> # Tag v1.0.0-dev2.
+
+pgcrypto 2022-04-02T10:09:41Z Mathieu <mathieu@example.com> # Load pgcrypto extension.
+insert_user [insert_user@v1.0.0-dev2 pgcrypto] 2022-04-02T10:13:14Z Mathieu <mathieu@example.com> # Change insert_user to use pgcrypto.
+change_pass [change_pass@v1.0.0-dev2 pgcrypto] 2022-04-02T10:16:14Z Mathieu <mathieu@example.com> # Change change_pass to use pgcrypto.
